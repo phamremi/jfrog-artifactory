@@ -1,0 +1,15 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    ARTIFACTORY_INDEX_URL: <SECRET_ARN>:<SECRET_KEY>
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - pip config set global.index-url ${ARTIFACTORY_INDEX_URL}
+      - pip install <CUSTOM_PACKAGE_NAME>
+  build:
+    commands:
+      - echo "Custom package installed!"
